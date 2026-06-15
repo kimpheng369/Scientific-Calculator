@@ -7,5 +7,5 @@ window.addEventListener('DOMContentLoaded', () => {
   converter.init();
   ui.init(graphing);
   
-  console.log('OmniCalc v2.0 Modular initialized.');
+  console.log('Scientific Calculator v2.0 Modular initialized.');
 });

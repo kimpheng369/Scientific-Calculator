@@ -1,6 +1,6 @@
-# OmniCalc — Premium Scientific Calculator
+# Scientific Calculator — Premium Scientific Calculator
 
-OmniCalc is a modern, feature-rich scientific calculator designed with a sleek glassmorphic interface. It provides a comprehensive suite of tools for mathematical calculations, function graphing, and unit conversion, all wrapped in a highly polished, responsive web interface.
+Scientific Calculator is a modern, feature-rich scientific calculator designed with a sleek glassmorphic interface. It provides a comprehensive suite of tools for mathematical calculations, function graphing, and unit conversion, all wrapped in a highly polished, responsive web interface.
 
 ![Version](https://img.shields.io/badge/version-2.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -44,11 +44,11 @@ OmniCalc is a modern, feature-rich scientific calculator designed with a sleek g
 
 ## 🚀 Getting Started
 
-No installation or build process is required. Since OmniCalc is built with pure web technologies:
+No installation or build process is required. Since Scientific Calculator is built with pure web technologies:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/scientific-calculator.git
+   git clone https://github.com/kimpheng369/Scientific-Calculator.git
    ```
 2. Navigate to the project folder:
    ```bash
