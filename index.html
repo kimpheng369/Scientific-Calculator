@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OmniCalc — Premium Scientific Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-glow-orb orb-1"></div>
+  <div class="bg-glow-orb orb-2"></div>
+  <div class="bg-glow-orb orb-3"></div>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <i class="fa-solid fa-calculator-simple accent-glow-text"></i>
+        <h1>OmniCalc<span class="version">v2.0</span></h1>
+      </div>
+      <nav class="tab-navigation">
+        <button class="tab-btn active" data-tab="calc-tab">
+          <i class="fa-solid fa-flask"></i> Scientific
+        </button>
+        <button class="tab-btn" data-tab="graph-tab">
+          <i class="fa-solid fa-chart-line"></i> Graphing
+        </button>
+        <button class="tab-btn" data-tab="convert-tab">
+          <i class="fa-solid fa-arrow-right-arrow-left"></i> Converter
+        </button>
+      </nav>
+      <div class="header-actions">
+        <button id="theme-toggle-btn" title="Switch Theme">
+          <i class="fa-solid fa-circle-half-stroke"></i>
+        </button>
+        <button id="toggle-history-btn" title="Toggle Calculation History">
+          <i class="fa-solid fa-history"></i>
+        </button>
+      </div>
+    </header>
+
+    <main class="app-content">
+      
+      <section id="calc-tab" class="tab-content active">
+        <div class="calculator-wrapper">
+          <div class="calculator-display">
+            <div class="indicator-bar">
+              <span class="mode-indicator" id="deg-rad-indicator">RAD</span>
+              <span class="memory-indicator" id="memory-indicator" style="display: none;">M</span>
+              <button id="copy-result" title="Copy Result" class="btn-copy"><i class="fa-solid fa-copy"></i></button>
+            </div>
+            <div class="expression-line" id="calc-expression" dir="ltr"></div>
+            <div class="result-line" id="calc-result">0</div>
+          </div>
+
+          <div class="memory-controls">
+            <button class="btn-mem" id="btn-mc">MC</button>
+            <button class="btn-mem" id="btn-mr">MR</button>
+            <button class="btn-mem" id="btn-mplus">M+</button>
+            <button class="btn-mem" id="btn-mminus">M-</button>
+            <button class="btn-mem" id="btn-ms">MS</button>
+            <button class="btn-mem" id="btn-deg-rad">DEG/RAD</button>
+            <button class="btn-mem" id="btn-2nd">2nd</button>
+          </div>
+
+          <div class="keypad-layout">
+            <div class="keypad-scientific">
+              <button class="btn-sci" data-val="sin">sin</button>
+              <button class="btn-sci" data-val="cos">cos</button>
+              <button class="btn-sci" data-val="tan">tan</button>
+              <button class="btn-sci" data-val="pi">π</button>
+              <button class="btn-sci" data-val="e">e</button>
+
+              <button class="btn-sci" data-val="asin" style="display: none;">sin⁻¹</button>
+              <button class="btn-sci" data-val="acos" style="display: none;">cos⁻¹</button>
+              <button class="btn-sci" data-val="atan" style="display: none;">tan⁻¹</button>
+              
+              <button class="btn-sci" data-val="ln">ln</button>
+              <button class="btn-sci" data-val="log">log</button>
+              <button class="btn-sci" data-val="log2">log₂</button>
+              <button class="btn-sci" data-val="^">x<sup>y</sup></button>
+              <button class="btn-sci" data-val="^2">x²</button>
+
+              <button class="btn-sci" data-val="sqrt">√</button>
+              <button class="btn-sci" data-val="cbrt">³√</button>
+              <button class="btn-sci" data-val="!">n!</button>
+              <button class="btn-sci" data-val="(">(</button>
+              <button class="btn-sci" data-val=")">)</button>
+
+              <button class="btn-sci" data-val="sinh">sinh</button>
+              <button class="btn-sci" data-val="cosh">cosh</button>
+              <button class="btn-sci" data-val="tanh">tanh</button>
+              <button class="btn-sci" data-val="abs">abs</button>
+              <button class="btn-sci" data-val="exp">exp</button>
+
+              <button class="btn-sci" data-val="asinh" style="display: none;">sinh⁻¹</button>
+              <button class="btn-sci" data-val="acosh" style="display: none;">cosh⁻¹</button>
+              <button class="btn-sci" data-val="atanh" style="display: none;">tanh⁻¹</button>
+              
+              <button class="btn-sci" data-val="floor">floor</button>
+              <button class="btn-sci" data-val="ceil">ceil</button>
+              <button class="btn-sci" data-val="round">round</button>
+              <button class="btn-sci" data-val="trunc">trunc</button>
+              <button class="btn-sci" data-val="rand">rand</button>
+            </div>
+
+            <div class="keypad-standard">
+              <button class="btn-action" data-action="clear">AC</button>
+              <button class="btn-action" data-action="backspace"><i class="fa-solid fa-delete-left"></i></button>
+              <button class="btn-action" data-val="%">%</button>
+              <button class="btn-op" data-val="/">÷</button>
+
+              <button class="btn-num" data-val="7">7</button>
+              <button class="btn-num" data-val="8">8</button>
+              <button class="btn-num" data-val="9">9</button>
+              <button class="btn-op" data-val="*">×</button>
+
+              <button class="btn-num" data-val="4">4</button>
+              <button class="btn-num" data-val="5">5</button>
+              <button class="btn-num" data-val="6">6</button>
+              <button class="btn-op" data-val="-">−</button>
+
+              <button class="btn-num" data-val="1">1</button>
+              <button class="btn-num" data-val="2">2</button>
+              <button class="btn-num" data-val="3">3</button>
+              <button class="btn-op" data-val="+">+</button>
+
+              <button class="btn-num btn-zero" data-val="0">0</button>
+              <button class="btn-num" data-val=".">.</button>
+              <button class="btn-num" data-val="ans" style="font-size: 0.9em; font-weight: 600;">Ans</button>
+              <button class="btn-equals" id="btn-equals">=</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="graph-tab" class="tab-content">
+        <div class="graph-wrapper">
+          <div class="graph-sidebar">
+            <div class="graph-section-title">Equations</div>
+            <div class="equation-list" id="equation-list">
+              <div class="equation-input-wrapper" data-index="0">
+                <span class="color-indicator eq-0"></span>
+                <span class="y-eq">y =</span>
+                <input type="text" class="equation-input" id="eq-input-0" placeholder="sin(x)" value="sin(x)">
+              </div>
+              <div class="equation-input-wrapper" data-index="1">
+                <span class="color-indicator eq-1"></span>
+                <span class="y-eq">y =</span>
+                <input type="text" class="equation-input" id="eq-input-1" placeholder="x^2" value="">
+              </div>
+              <div class="equation-input-wrapper" data-index="2">
+                <span class="color-indicator eq-2"></span>
+                <span class="y-eq">y =</span>
+                <input type="text" class="equation-input" id="eq-input-2" placeholder="cos(2x)" value="">
+              </div>
+            </div>
+
+            <button class="btn-primary" id="btn-plot"><i class="fa-solid fa-rotate"></i> Plot Graphs</button>
+
+            <div class="graph-section-title" style="margin-top: 1.5rem;">Controls</div>
+            <div class="graph-control-grid">
+              <button class="btn-graph-ctrl" id="btn-zoom-in" title="Zoom In"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+              <button class="btn-graph-ctrl" id="btn-zoom-out" title="Zoom Out"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+              <button class="btn-graph-ctrl" id="btn-zoom-reset" title="Reset Scale"><i class="fa-solid fa-arrows-to-eye"></i></button>
+              <button class="btn-graph-ctrl" id="btn-pan-left" title="Pan Left"><i class="fa-solid fa-arrow-left"></i></button>
+              <button class="btn-graph-ctrl" id="btn-pan-right" title="Pan Right"><i class="fa-solid fa-arrow-right"></i></button>
+              <button class="btn-graph-ctrl" id="btn-pan-up" title="Pan Up"><i class="fa-solid fa-arrow-up"></i></button>
+              <button class="btn-graph-ctrl" id="btn-pan-down" title="Pan Down"><i class="fa-solid fa-arrow-down"></i></button>
+            </div>
+            
+            <div class="graph-info">
+              <p><i class="fa-solid fa-circle-info"></i> Drag on the graph to pan. Scroll or use buttons to zoom.</p>
+              <p>Supported: x, sin(x), cos(x), tan(x), log(x), ln(x), x^2, sqrt(x), abs(x), etc.</p>
+            </div>
+          </div>
+
+          <div class="graph-canvas-container">
+            <canvas id="graph-canvas"></canvas>
+            <div class="graph-coordinates" id="graph-coords">X: 0.00 | Y: 0.00</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="convert-tab" class="tab-content">
+        <div class="converter-wrapper">
+          <div class="converter-card">
+            <h2>Unit Converter</h2>
+            
+            <div class="converter-categories">
+              <button class="cat-btn active" data-category="length">
+                <i class="fa-solid fa-ruler-horizontal"></i>
+                <span>Length</span>
+              </button>
+              <button class="cat-btn" data-category="weight">
+                <i class="fa-solid fa-weight-scale"></i>
+                <span>Mass</span>
+              </button>
+              <button class="cat-btn" data-category="temperature">
+                <i class="fa-solid fa-temperature-half"></i>
+                <span>Temp</span>
+              </button>
+              <button class="cat-btn" data-category="area">
+                <i class="fa-solid fa-chart-area"></i>
+                <span>Area</span>
+              </button>
+              <button class="cat-btn" data-category="volume">
+                <i class="fa-solid fa-glass-water"></i>
+                <span>Volume</span>
+              </button>
+              <button class="cat-btn" data-category="speed">
+                <i class="fa-solid fa-gauge-high"></i>
+                <span>Speed</span>
+              </button>
+              <button class="cat-btn" data-category="time">
+                <i class="fa-solid fa-clock"></i>
+                <span>Time</span>
+              </button>
+              <button class="cat-btn" data-category="data">
+                <i class="fa-solid fa-database"></i>
+                <span>Data</span>
+              </button>
+            </div>
+
+            <div class="conversion-fields-grid">
+              <div class="conversion-panel">
+                <label for="convert-from-val">From</label>
+                <input type="number" id="convert-from-val" class="convert-input" placeholder="0" value="1">
+                <select id="convert-from-unit" class="convert-select"></select>
+              </div>
+
+              <div class="swap-btn-container">
+                <button id="btn-swap-units" title="Swap Units">
+                  <i class="fa-solid fa-right-left"></i>
+                </button>
+              </div>
+
+              <div class="conversion-panel">
+                <label for="convert-to-val">To</label>
+                <input type="number" id="convert-to-val" class="convert-input" placeholder="0">
+                <select id="convert-to-unit" class="convert-select"></select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+    </main>
+
+    <aside class="history-sidebar" id="history-sidebar">
+      <div class="history-header">
+        <h3><i class="fa-solid fa-clock-rotate-left"></i> History</h3>
+        <button id="close-history-btn" title="Close Sidebar"><i class="fa-solid fa-times"></i></button>
+      </div>
+      <div class="history-list" id="history-list">
+        <div class="empty-history-msg">No calculation history yet.</div>
+      </div>
+      <div class="history-footer">
+        <button class="btn-clear-history" id="btn-clear-history">
+          <i class="fa-solid fa-trash-can"></i> Clear History
+        </button>
+      </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  </div>
+
+  <button class="btn-help" id="btn-help" title="Keyboard Shortcuts">
+    <i class="fa-solid fa-keyboard"></i>
+  </button>
+
+  <div class="modal-overlay" id="help-modal">
+    <div class="modal-content">
+      <span class="modal-close" id="close-modal">&times;</span>
+      <h2>Keyboard Shortcuts</h2>
+      <div class="shortcut-grid">
+        <div class="shortcut-item"><span>Calculate</span> <kbd>Enter</kbd></div>
+        <div class="shortcut-item"><span>Clear All</span> <kbd>Esc</kbd></div>
+        <div class="shortcut-item"><span>Backspace</span> <kbd>Backsp</kbd></div>
+        <div class="shortcut-item"><span>Add/Sub</span> <kbd>+</kbd> <kbd>-</kbd></div>
+        <div class="shortcut-item"><span>Mult/Div</span> <kbd>*</kbd> <kbd>/</kbd></div>
+        <div class="shortcut-item"><span>Power</span> <kbd>^</kbd></div>
+        <div class="shortcut-item"><span>Brackets</span> <kbd>(</kbd> <kbd>)</kbd></div>
+        <div class="shortcut-item"><span>History</span> <kbd>H</kbd></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
